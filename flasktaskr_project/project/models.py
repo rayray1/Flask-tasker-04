@@ -1,6 +1,6 @@
 # models.py - Recreating the database using SQLAlchemy
 
-from views import db
+from project import db
 
 
 # class task - defines the tasks table
