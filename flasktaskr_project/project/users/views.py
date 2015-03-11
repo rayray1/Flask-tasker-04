@@ -33,7 +33,10 @@ def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)
     session.pop('role', None)
+<<<<<<< HEAD
     session.pop('name', None)
+=======
+>>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
     flash('You are logged out.')
     return redirect(url_for('users.login'))
 

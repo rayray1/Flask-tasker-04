@@ -67,12 +67,17 @@
         <td>{{ o.priority }}</td>
         <td>{{ o.poster.name }}</td>
         <td>
+<<<<<<< HEAD
             {% if o.poster.name == session.name or session.role == "admin" %}
                 <a href="{{ url_for('tasks.delete_entry', task_id = o.task_id) }}">Delete</a>  -
                 <a href="{{ url_for('tasks.complete', task_id = o.task_id) }}">Mark as Complete</a>
             {% else %}
                 <span>N/A</span>
             {% endif %}
+=======
+          <a href="{{ url_for('tasks.delete_entry', task_id = o.task_id) }}">Delete</a>  -
+          <a href="{{ url_for('tasks.complete', task_id = o.task_id) }}">Mark as Complete</a>
+>>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
         </td>
       </tr>
     {% endfor %}
@@ -104,11 +109,15 @@
         <td>{{ c.priority }}</td>
         <td>{{ c.poster.name }}</td>
         <td>
+<<<<<<< HEAD
             {% if c.poster.name == session.name or session.role == "admin" %}
                 <a href="{{ url_for('tasks.delete_entry', task_id = c.task_id) }}">Delete</a>
             {% else %}
                 <span>N/A</span>
             {% endif %}
+=======
+           <a href="{{ url_for('tasks.delete_entry', task_id = c.task_id) }}">Delete</a>
+>>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
         </td>
       </tr>
     {% endfor %}

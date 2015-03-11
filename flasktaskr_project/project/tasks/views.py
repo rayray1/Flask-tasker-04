@@ -33,8 +33,12 @@ def tasks():
         'tasks.html',
         form=AddTaskForm(request.form),
         open_tasks=open_tasks,
+<<<<<<< HEAD
         closed_tasks=closed_tasks,
         username=session['name']
+=======
+        closed_tasks=closed_tasks
+>>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
     )
 
 
