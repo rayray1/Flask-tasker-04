@@ -9,7 +9,7 @@ from flask import flash, redirect, render_template, request, \
     session, url_for, Blueprint
 from sqlalchemy.exc import IntegrityError
 from forms import RegisterForm, LoginForm
-from project import db
+from project import db, bcrypt
 from project.views import login_required
 from project.models import User
 
@@ -40,17 +40,14 @@ def logout():
     flash('You are logged out.')
     return redirect(url_for('users.login'))
 
-
+# user login
 @users_blueprint.route('/', methods=['GET', 'POST'])
 def login():
     error = None
     form = LoginForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            u = User.query.filter_by(
-                name=request.form['name'],
-                password=request.form['password']
-            ).first()
+            u = User.query.filter_by(name=request.form['name']).first()
             if u is None:
                 error = 'Invalid username or password.'
                 return render_template(
@@ -58,7 +55,9 @@ def login():
                     form=form,
                     error=error
                 )
-            else:
+            elif bcrypt.check_password_hash(
+                u.password, request.form['password']
+            ):
                 session['logged_in'] = True
                 session['user_id'] = u.id
                 session['role'] = u.role
@@ -74,7 +73,7 @@ def login():
     if request.method == 'GET':
         return render_template('login.html', form=form)
 
-
+# user registration
 @users_blueprint.route('/register/', methods=['GET', 'POST'])
 def register():
     error = None
@@ -84,7 +83,7 @@ def register():
             new_user = User(
                 form.name.data,
                 form.email.data,
-                form.password.data
+                bcrypt.generate_password_hash(form.password.data) # password hashing
             )
             try:
                 db.session.add(new_user)
