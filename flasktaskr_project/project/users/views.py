@@ -1,3 +1,6 @@
+# project/users/views.py
+
+
 #################
 #### imports ####
 #################
@@ -33,10 +36,7 @@ def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)
     session.pop('role', None)
-<<<<<<< HEAD
     session.pop('name', None)
-=======
->>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
     flash('You are logged out.')
     return redirect(url_for('users.login'))
 
@@ -62,6 +62,7 @@ def login():
                 session['logged_in'] = True
                 session['user_id'] = u.id
                 session['role'] = u.role
+                session['name'] = u.name
                 flash('You are logged in.')
                 return redirect(url_for('tasks.tasks'))
         else:
@@ -83,7 +84,7 @@ def register():
             new_user = User(
                 form.name.data,
                 form.email.data,
-                form.password.data,
+                form.password.data
             )
             try:
                 db.session.add(new_user)

@@ -24,10 +24,6 @@
           <a class="navbar-brand" href="/">FlaskTaskr</a>
         </div>
         <div class="collapse navbar-collapse">
-<<<<<<< HEAD
-
-=======
->>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
           <ul class="nav navbar-nav">
             {% if not session.logged_in %}
               <li><a href="{{ url_for('users.register') }}">Signup</a></li>
@@ -35,16 +31,13 @@
               <li><a href="{{ url_for('users.logout') }}">Signout</a></li>
             {% endif %}
           </ul>
-<<<<<<< HEAD
 
           {% if session.logged_in %}
             <ul class="nav navbar-nav navbar-right">
             <li><a>Welcome, {{username}}</a></li>
             </ul>
             {% endif %}
-
-=======
->>>>>>> 8eec65755fa49560afc3d960f6d3857ef0f877b7
+            
         </div><!--/.nav-collapse -->
       </div>
     </div>
